@@ -3,6 +3,7 @@ import { getMovies } from "../services/fakeMovieService";
 import Like from "./common/like";
 import Pagination from "./common/pagination";
 import { paginate } from "../utils/paginate";
+import ListGroup from "./common/listgroup";
 
 class Movies extends Component {
   state = {
@@ -32,19 +33,23 @@ class Movies extends Component {
     const count = this.state.movies.length;
     const { pageSize, currentPage, movies: allMovies } = this.state;
 
-    if (count === 0) return <p>There are no movies in the database</p>;
+    if (count === 0)
+      return <p className="p-grid">There are no movies in the database</p>;
 
     const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
       <React.Fragment>
-        <table className="table">
+        <ListGroup />
+        <p className="p-grid">Showing {count} movies in the database</p>
+        <table className="table table-grid">
           <thead>
             <tr>
               <th>Title</th>
               <th>Genre</th>
               <th>Stock</th>
               <th>Rate</th>
+              <th></th>
               <th></th>
               <th></th>
             </tr>
