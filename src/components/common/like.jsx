@@ -4,14 +4,7 @@ const Like = (props) => {
   let classes = "fa fa-heart";
   if (!props.liked === true) classes += "-o";
 
-  return (
-    <i
-      className={classes}
-      aria-hidden="true"
-      onClick={props.handleLike}
-      style={{ cursoe: "pointer" }}
-    ></i>
-  );
+  return <i className={classes} aria-hidden="true" onClick={props.onClick}></i>;
 };
 
 export default Like;
