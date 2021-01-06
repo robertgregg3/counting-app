@@ -37,3 +37,8 @@
 .pagination .active:hover {
   color: #fff;
 }
+
+.main-nav {
+  flex-flow: row;
+  flex-wrap: nowrap !important;
+}
