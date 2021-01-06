@@ -7,6 +7,7 @@ import Rentals from "./components/pages/rentals";
 import { Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./components/pages/notFound";
 import MovieDetails from "./components/movieDetails";
+import LoginForm from "./components/common/loginForm";
 
 class App extends Component {
   state = {};
@@ -17,10 +18,11 @@ class App extends Component {
         <Navbar />
         <main className="container">
           <Switch>
-            <Route path="/customers" component={Customers} />
-            <Route path="/rentals" component={Rentals} />
+            <Route path="/login" component={LoginForm} />
             <Route path="/movies/:id" component={MovieDetails} />
             <Route path="/movies" component={Movies} />
+            <Route path="/customers" component={Customers} />
+            <Route path="/rentals" component={Rentals} />
             <Redirect from="/" to="/movies" />
             <Route path="/not-found" component={NotFound} />
             <Route path="/" exact component={Movies} />

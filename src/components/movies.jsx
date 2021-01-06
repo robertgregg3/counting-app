@@ -78,6 +78,7 @@ class Movies extends Component {
 
     return (
       <React.Fragment>
+        <h1>Movies</h1>
         <ListGroup
           items={this.state.genres}
           selectedItem={this.state.selectedGenre}
