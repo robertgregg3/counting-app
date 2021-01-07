@@ -8,7 +8,7 @@ const ListGroup = ({
   selectedItem,
 }) => {
   return (
-    <ul className="list-group">
+    <ul className="grid-row-2">
       {items.map((item) => (
         <li
           className={

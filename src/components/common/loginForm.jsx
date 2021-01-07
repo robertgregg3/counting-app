@@ -1,12 +1,35 @@
 import React, { Component } from "react";
+import Input from "./input";
 
 class LoginForm extends Component {
   state = {
     account: { username: "", password: "" },
+    errors: {}
   };
+
+  validate = () => {
+    const errors = {}
+
+    const { account } = this.state;
+
+    if(account.username.trim() === '')
+      errors.username = 'Username is required';
+    if(account.password.trim() === '')
+      errors.password = 'password is required';
+
+    return Object.keys(errors).length === 0 ? 'null' : errors
+  }
+
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    const errors = this.validate();
+    console.log(errors)
+    this.setState({ errors: errors || {}  })
+    if (errors) return;
+
+    // call the server
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -16,33 +39,30 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { account } = this.state;
+    const { account, errors } = this.state;
     return (
-      <div>
+      <div className="grid-col-1-3">
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
+            <Input 
+              autoFocus
               onChange={this.handleChange}
               value={account.username}
-              name="username"
               id="username"
+              name="username"
               type="text"
-              className="form-control"
+              className="form-control" 
+              error={errors.username}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
+            <Input 
               onChange={this.handleChange}
               value={account.password}
               id="password"
               name="password"
               type="text"
-              className="form-control"
+              className="form-control" 
+              error={errors.password}
             />
-          </div>
           <button className="btn btn-primary">Submit</button>
         </form>
       </div>

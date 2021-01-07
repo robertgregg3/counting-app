@@ -72,19 +72,19 @@ class Movies extends Component {
     const { pageSize, currentPage, sortColumn } = this.state;
 
     if (count === 0)
-      return <p className="p-grid">There are no movies in the database</p>;
+      return <p className="grid-col-2-3 grid-row-2">There are no movies in the database</p>;
 
     const { totalCount, data: movies } = this.getPageData();
 
     return (
       <React.Fragment>
-        <h1>Movies</h1>
+        <h1 className="grid-col-1-3 grid-row-1">Movies</h1>
         <ListGroup
           items={this.state.genres}
           selectedItem={this.state.selectedGenre}
           onItemSelect={this.handleGenreSelect}
         />
-        <p className="p-grid">Showing {totalCount} movies in the database</p>
+        <p className="grid-col-2-3 grid-row-2">Showing {totalCount} movies in the database</p>
         <MoviesTable
           movies={movies}
           sortColumn={sortColumn}
