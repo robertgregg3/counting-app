@@ -1,14 +1,13 @@
 import React, { Component } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Movies from "./components/movies";
 import Navbar from "./components/navBar";
 import Customers from "./components/pages/customers";
 import Rentals from "./components/pages/rentals";
-import { Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./components/pages/notFound";
 import MovieDetails from "./components/movieDetails";
 import LoginForm from "./components/common/loginForm";
-import RegisterForm from "./components/common/registerForm";
 
 class App extends Component {
   state = {};
@@ -20,9 +19,7 @@ class App extends Component {
         <main className="container">
           <Switch>
             <Route path="/login" component={LoginForm} />
-            <Route path="/register" component={RegisterForm} />
             <Route path="/movies/:id" component={MovieDetails} />
-            <Route path="/movies/new/:_id:title" component={MovieDetails} />
             <Route path="/movies" component={Movies} />
             <Route path="/customers" component={Customers} />
             <Route path="/rentals" component={Rentals} />
