@@ -3,27 +3,23 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 
 class MovieDetails extends Form {
-  state = { 
-      
-   }
+  state = {};
 
-  schema = {}    
+  schema = {};
 
-  render() { 
-    return ( 
+  render() {
+    return (
       <div className="grid-col-1-3">
         <h1>Movie Form</h1>
-        <form onSubmit={this.handleSubmit}>
-          
-        </form>
+        <form onSubmit={this.handleSubmit}></form>
         <button
           className="btn btn-primary"
           onClick={() => this.props.history.push("/movies")}>
           Save
         </button>
       </div>
-     );
+    );
   }
 }
- 
+
 export default MovieDetails;
