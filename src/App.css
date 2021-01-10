@@ -35,7 +35,6 @@
   grid-row: 4;
 }
 
-
 .pagination .active:hover {
   color: #fff;
 }
@@ -43,4 +42,8 @@
 .main-nav {
   flex-flow: row;
   flex-wrap: nowrap !important;
+}
+
+.new-movie{
+  width: 120px;
 }

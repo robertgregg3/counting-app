@@ -8,7 +8,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   const pages = _.range(1, pagesCount + 1);
 
   return (
-    <nav aria-label="Page navigation example" className="grid-row-4 grid-col-2-3">
+    <nav aria-label="Page navigation example" className="grid-row-4 grid-col-2-3 mt-4">
       <ul className="pagination">
         {pages.map((page) => (
           <li

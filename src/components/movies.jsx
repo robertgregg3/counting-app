@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
 import Pagination from "./common/pagination";
+import { Link } from "react-router-dom";
 import { paginate } from "../utils/paginate";
 import ListGroup from "./common/listgroup";
 import { getGenres } from "../services/fakeGenreService";
@@ -70,12 +71,11 @@ class Movies extends Component {
   render() {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, sortColumn } = this.state;
-
     if (count === 0)
-      return <p className="grid-col-2-3 grid-row-2">There are no movies in the database</p>;
-
+    return <p className="grid-col-2-3 grid-row-3">There are no movies in the database</p>;
+    
     const { totalCount, data: movies } = this.getPageData();
-
+    
     return (
       <React.Fragment>
         <h1 className="grid-col-1-3 grid-row-1">Movies</h1>
@@ -84,7 +84,10 @@ class Movies extends Component {
           selectedItem={this.state.selectedGenre}
           onItemSelect={this.handleGenreSelect}
         />
-        <p className="grid-col-2-3 grid-row-2">Showing {totalCount} movies in the database</p>
+        <Link to={`/movies/new`}>
+          <button className="btn btn-primary grid-col-2-3 grid-row-2 btn-sm new-movie">New Movie</button>
+        </Link>
+        <p className="grid-col-2-3 grid-row-3">Showing {totalCount} movies in the database</p>
         <MoviesTable
           movies={movies}
           sortColumn={sortColumn}

@@ -38,7 +38,7 @@ class MoviesTable extends Component {
     const { movies, onSort, sortColumn } = this.props;
 
     return (
-      <table className="table grid-row-3 grid-col-2-3">
+      <table className="table grid-row-3 grid-col-2-3 mt-5">
         <TableHeader
           columns={this.columns}
           sortColumn={sortColumn}
