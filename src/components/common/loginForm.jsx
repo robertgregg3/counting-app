@@ -12,7 +12,7 @@ class LoginForm extends Form {
     username: Joi.string().required().label("Username"),
     password: Joi.string().required().label("Password"),
   };
-  
+
   doSubmit() {
     // call the server
     console.log("submitted");
@@ -23,9 +23,9 @@ class LoginForm extends Form {
       <div className="grid-col-1-3">
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput('username', 'Username')}
-          {this.renderInput('password', 'Password', 'password')}
-          {this.renderButton('Login')}
+          {this.renderInput("username", "Username")}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderButton("Login")}
         </form>
       </div>
     );

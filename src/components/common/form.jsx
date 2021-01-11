@@ -57,7 +57,7 @@ class Form extends Component {
     );
   }
 
-  renderInput(name, label, type = "text", value) {
+  renderInput(name, label, type = "text") {
     const { data, errors } = this.state;
 
     return (
@@ -65,24 +65,24 @@ class Form extends Component {
         name={name}
         label={label}
         error={errors[name]}
-        value={value}
+        value={data[name]}
         onChange={this.handleChange}
         type={type}
       />
     );
   }
 
-  renderSelect(name, label) {
+  renderSelect(name, label, options) {
     const { data, errors } = this.state;
 
     return (
       <Select
         name={name}
-        label={label}
-        error={errors[name]}
         value={data[name]}
+        label={label}
+        options={options}
         onChange={this.handleChange}
-        type={"select"}
+        error={errors[name]}
       />
     );
   }

@@ -72,10 +72,14 @@ class Movies extends Component {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, sortColumn } = this.state;
     if (count === 0)
-    return <p className="grid-col-2-3 grid-row-3">There are no movies in the database</p>;
-    
+      return (
+        <p className="grid-col-2-3 grid-row-3">
+          There are no movies in the database
+        </p>
+      );
+
     const { totalCount, data: movies } = this.getPageData();
-    
+
     return (
       <React.Fragment>
         <h1 className="grid-col-1-3 grid-row-1">Movies</h1>
@@ -84,10 +88,14 @@ class Movies extends Component {
           selectedItem={this.state.selectedGenre}
           onItemSelect={this.handleGenreSelect}
         />
-        <Link to={`/movies/new`}>
-          <button className="btn btn-primary grid-col-2-3 grid-row-2 btn-sm new-movie">New Movie</button>
+        <Link
+          to={`/movies/new`} // in app.js you can see tha ,ovies/whatever means that 'whatever' is the id. In this case "new"
+          className="btn btn-primary grid-col-2-3 grid-row-2 btn-sm new-movie">
+          New Movie
         </Link>
-        <p className="grid-col-2-3 grid-row-3">Showing {totalCount} movies in the database</p>
+        <p className="grid-col-2-3 grid-row-3">
+          Showing {totalCount} movies in the database
+        </p>
         <MoviesTable
           movies={movies}
           sortColumn={sortColumn}

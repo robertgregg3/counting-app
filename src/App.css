@@ -4,6 +4,10 @@
 }
 
 .container {
+  margin: 2rem;
+}
+
+.container {
   display: grid;
   grid-template-columns: 20% 80%;
   grid-gap: 1rem;
@@ -19,19 +23,19 @@
   grid-column: 2/3;
 }
 
-.grid-row-1{
+.grid-row-1 {
   grid-row: 1;
 }
 
-.grid-row-2{
+.grid-row-2 {
   grid-row: 2;
 }
 
-.grid-row-3{
+.grid-row-3 {
   grid-row: 3;
 }
 
-.grid-row-4{
+.grid-row-4 {
   grid-row: 4;
 }
 
@@ -44,6 +48,6 @@
   flex-wrap: nowrap !important;
 }
 
-.new-movie{
+.new-movie {
   width: 120px;
 }
