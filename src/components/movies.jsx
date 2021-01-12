@@ -7,6 +7,7 @@ import ListGroup from "./common/listgroup";
 import { getGenres } from "../services/fakeGenreService";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
+import SearchBar from "./common/searchBar";
 
 class Movies extends Component {
   state = {
@@ -14,6 +15,8 @@ class Movies extends Component {
     genres: [],
     currentPage: 1,
     pageSize: 4,
+    searchQuery: "",
+    selectedGenre: null,
     sortColumn: { path: "title", order: "asc" },
   };
 
@@ -40,11 +43,15 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    this.setState({ selectedGenre: genre, currentPage: 1 });
+    this.setState({ selectedGenre: genre, searchQuery: "", currentPage: 1 });
   };
 
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
+  };
+
+  handleSearch = (query) => {
+    this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1 });
   };
 
   getPageData = () => {
@@ -52,14 +59,18 @@ class Movies extends Component {
       pageSize,
       currentPage,
       sortColumn,
+      searchQuery,
       movies: allMovies,
       selectedGenre,
     } = this.state;
 
-    const filtered =
-      selectedGenre && selectedGenre._id
-        ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
-        : allMovies;
+    let filtered = allMovies;
+    if (searchQuery)
+      filtered = allMovies.filter((m) =>
+        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
+    else if (selectedGenre && selectedGenre._id)
+      filtered = allMovies.filter((m) => m.genre._id === selectedGenre._id);
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
@@ -70,7 +81,7 @@ class Movies extends Component {
 
   render() {
     const { length: count } = this.state.movies;
-    const { pageSize, currentPage, sortColumn } = this.state;
+    const { pageSize, currentPage, sortColumn, searchQuery } = this.state;
     if (count === 0)
       return (
         <p className="grid-col-2-3 grid-row-3">
@@ -81,35 +92,37 @@ class Movies extends Component {
     const { totalCount, data: movies } = this.getPageData();
 
     return (
-      <React.Fragment>
-        <h1 className="grid-col-1-3 grid-row-1">Movies</h1>
-        <ListGroup
-          items={this.state.genres}
-          selectedItem={this.state.selectedGenre}
-          onItemSelect={this.handleGenreSelect}
-        />
-        <Link
-          to={`/movies/new`} // in app.js you can see tha ,ovies/whatever means that 'whatever' is the id. In this case "new"
-          className="btn btn-primary grid-col-2-3 grid-row-2 btn-sm new-movie">
-          New Movie
-        </Link>
-        <p className="grid-col-2-3 grid-row-3">
-          Showing {totalCount} movies in the database
-        </p>
-        <MoviesTable
-          movies={movies}
-          sortColumn={sortColumn}
-          onLike={this.handleLike}
-          onDelete={this.handleDelete}
-          onSort={this.handleSort}
-        />
-        <Pagination
-          itemsCount={totalCount}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={this.handlePageChange}
-        />
-      </React.Fragment>
+      <div className="row">
+        <div className="col-3">
+          <ListGroup
+            items={this.state.genres}
+            selectedItem={this.state.selectedGenre}
+            onItemSelect={this.handleGenreSelect}
+          />
+        </div>
+        <div className="col">
+          <Link
+            to={`/movies/new`} // in app.js you can see tha ,ovies/whatever means that 'whatever' is the id. In this case "new"
+            className="btn btn-primary btn-sm new-movie">
+            New Movie
+          </Link>
+          <p className="mb-0">Showing {totalCount} movies in the database</p>
+          <SearchBar value={searchQuery} onChange={this.handleSearch} />
+          <MoviesTable
+            movies={movies}
+            sortColumn={sortColumn}
+            onLike={this.handleLike}
+            onDelete={this.handleDelete}
+            onSort={this.handleSort}
+          />
+          <Pagination
+            itemsCount={totalCount}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={this.handlePageChange}
+          />
+        </div>
+      </div>
     );
   }
 }

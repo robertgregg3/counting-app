@@ -56,7 +56,7 @@ class MovieDetails extends Form {
 
   render() {
     return (
-      <div className="grid-col-1-3">
+      <div>
         <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
