@@ -3,8 +3,8 @@
   cursor: pointer;
 }
 
-.container {
-  margin: 4rem;
+main.container {
+  margin: 2rem;
 }
 
 .pagination .active:hover {
@@ -27,4 +27,29 @@
 
 .mb--2 {
   margin-bottom: -1rem;
+}
+
+.list-group-col {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+@media (max-width: 800px) {
+  .list-group-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-left: -1.55rem;
+  }
+}
+
+@media (max-width: 650px) {
+  main.container {
+    margin: 2rem 1rem;
+  }
+}
+
+@media (max-width: 550px) {
+  main.container {
+    margin: 2rem 0rem;
+  }
 }
